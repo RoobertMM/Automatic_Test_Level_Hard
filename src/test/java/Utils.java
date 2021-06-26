@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public class Utils {
     final static String CHROME_DRIVER_LOCATION = "chromedriver.exe";
-    final static String BASE_URL = "file:///C:/Users/Roby/OneDrive/Documente/manual%20testing%20in%20class/Testing-Env-master/index.html";
+    final static String BASE_URL = "file:///C:/Users/Roby/OneDrive/Documente/manual%20testing%20in%20class/Testing-Env/index.html#";
     public static void waitForElementsToLoad(int timeUnit){
         try{
             TimeUnit.SECONDS.sleep(timeUnit);}

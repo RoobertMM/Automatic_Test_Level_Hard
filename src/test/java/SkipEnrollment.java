@@ -2,15 +2,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class Enrollment extends PageObject{
-    public Enrollment(WebDriver driver) {
+public class SkipEnrollment extends PageObject{
+    public SkipEnrollment(WebDriver driver) {
         super(driver);
     }
-
-    private final String User_Name = "Robert";
-    private final String Email = "vreaulamborghini@yahoo.com";
-    private final String Password = "taratara242326";
-
+    private final String TD= "TD";
     @FindBy(xpath = "/html/body/div/div/section/div/form/div[1]/button")
     private WebElement nextButton ;
     @FindBy(xpath = "//*[@id=\"firstName\"]")
@@ -24,9 +20,7 @@ public class Enrollment extends PageObject{
     @FindBy(xpath = "//*[@id=\"cpassword\"]")
     private WebElement rePassowrdBox;
 
-
-    public void PasswordBox(){this.passwordBox.sendKeys(Password);this.rePassowrdBox.sendKeys(Password);}
-    public void EmailBox(){this.userBox.sendKeys(Email);}
+    public void PasswordBox(){this.passwordBox.sendKeys(TD);this.rePassowrdBox.sendKeys(TD);this.userBox.sendKeys(TD);
+    this.lastBox.sendKeys(TD);this.firstBox.sendKeys(TD);}
     public void Next (){this.nextButton.click();}
-    public void UserBox(){this.lastBox.sendKeys(User_Name);this.firstBox.sendKeys(User_Name);}
 }

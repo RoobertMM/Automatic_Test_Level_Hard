@@ -1,3 +1,4 @@
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
@@ -12,129 +13,184 @@ public class TestPlan {
         System.setProperty("webdriver.chrome.driver", Utils.CHROME_DRIVER_LOCATION);
     }
 
-    @Test(testName = "Verify ReadMore Buttons")
-    public void VerifyButtons() {
+    @Test(testName = "Verify ReadMore Virtual Button")
+    public void VerifyVirtualButton() {
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
-        Virtual webForms = new Virtual(driver);
-        Hybrid websForm = new Hybrid(driver);
-        Utils.waitForElementsToLoad(2);
-        webForm.ScrollDown();
-        Utils.waitForElementsToLoad(5);
         webForm.Virtual();
-        Utils.waitForElementsToLoad(5);
-        webForms.ReturnVirtual();
-        Utils.waitForElementsToLoad(5);
-        webForm.Hybrid();
-        Utils.waitForElementsToLoad(5);
-        websForm.ReturnHybrid();
+        Utils.waitForElementsToLoad(2);
+        Virtual webVirtual = new Virtual(driver);
+        webVirtual.ReturnVirtual();
 
+    }
+
+    @Test(testName = "Verify ReadMore Hybrid Button")
+    public void VerifyHybridButton(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.Hybrid();
+        Utils.waitForElementsToLoad(2);
+        Hybrid webHybrid = new Hybrid(driver);
+        webHybrid.ReturnHybrid();
+    }
+
+    @Test(testName = "Verify InPerson readmore Button")
+    public void VerifyInPersonButton(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.ReadMoreInPerson();
+        InPerson webPerson = new InPerson(driver);
+        webPerson.ReturnInPerson();
     }
     @Test(testName = "Verify The Enrollment")
     public void VerifySite() {
         driver.get(Utils.BASE_URL);
-        Homepage wwebForm = new Homepage(driver);
-        Enrollment webForm = new Enrollment(driver);
-        wwebForm.StartEnrollment();
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
         Utils.waitForElementsToLoad(3);
-        webForm.UserBox();
-        webForm.EmailBox();
-        webForm.PasswordBox();
+        Enrollment webEnroll = new Enrollment(driver);
+        webEnroll.UserBox();
+        webEnroll.EmailBox();
+        webEnroll.PasswordBox();
         Utils.waitForElementsToLoad(3);
-        webForm.Next();
-        Utils.waitForElementsToLoad(2);
+        webEnroll.Next();
     }
-    @Test(testName = "Verify Personal Information")
-    public void VerifyInfo(){
+    @Test(testName = "Verify Contact Information")
+    public void VerifyContactInfo(){
         driver.get(Utils.BASE_URL);
-        Homepage wwebForm = new Homepage(driver);
-        InfoEnrollment webForm = new InfoEnrollment(driver);
-        Enrollment wForm = new Enrollment(driver);
-        wwebForm.StartEnrollment();
+        Homepage webForm = new Homepage(driver);
+        SkipEnrollment webEnroll = new SkipEnrollment(driver);
+        webForm.StartEnrollment();
         Utils.waitForElementsToLoad(2);
-        wForm.Next();
-        Utils.waitForElementsToLoad(2);
-        webForm.FirstName();
-        webForm.SecondName();
-        webForm.PhoneNumber();
+        webEnroll.PasswordBox();
         Utils.waitForElementsToLoad(1);
-        webForm.NextInfo();
+        webEnroll.Next();
+        ContactInfo webContact = new ContactInfo(driver);
+        webContact.CityBox();
+        webContact.CountryBox();
+        webContact.PhoneBox();
+        webContact.PostBox();
+        webContact.EmailBox();
         Utils.waitForElementsToLoad(2);
+        webContact.Next();
     }
-    @Test(testName = "Verify Option")
-    public void VerifyOption(){
+    @Test(testName = "Verify Enrollment Doesn't Empty")
+    public void VerifyEmptyEnrollment(){
         driver.get(Utils.BASE_URL);
-        Homepage wwebForm = new Homepage(driver);
-        InfoEnrollment webForm = new InfoEnrollment(driver);
-        Enrollment wForm = new Enrollment(driver);
-        Option WebForm = new Option(driver);
-        wwebForm.StartEnrollment();
-        Utils.waitForElementsToLoad(2);
-        wForm.Next();
-        Utils.waitForElementsToLoad(2);
-        webForm.NextInfo();
-        Utils.waitForElementsToLoad(2);
-        WebForm.ChoseBox();
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
+        Enrollment webEnroll = new Enrollment(driver);
+        webEnroll.UserBox();
         Utils.waitForElementsToLoad(1);
-        WebForm.NextOption();
-        Utils.waitForElementsToLoad(2);
+        webEnroll.Next();
     }
 
-    @Test(testName = "Payment Verify")
-    public void VerifyPayment(){
+    @Test(testName = "Verify Empty Enrollment #2")
+    public void VerifyEmptyEnrollmentPassword(){
         driver.get(Utils.BASE_URL);
-        Homepage wwebForm = new Homepage(driver);
-        InfoEnrollment webForm = new InfoEnrollment(driver);
-        Enrollment wForm = new Enrollment(driver);
-        Option WebForm = new Option(driver);
-        Payment form = new Payment(driver);
-        wwebForm.StartEnrollment();
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
         Utils.waitForElementsToLoad(1);
-        wForm.Next();
+        Enrollment webEnroll = new Enrollment(driver);
+        webEnroll.UserBox();
+        webEnroll.EmailBox();
         Utils.waitForElementsToLoad(1);
-        webForm.NextInfo();
+        webEnroll.Next();
+    }
+    @Test(testName = "Verify Contact Without A Box")
+    public void VerifyContactWorking(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
         Utils.waitForElementsToLoad(1);
-        WebForm.NextOption();
+        SkipEnrollment webSkip = new SkipEnrollment(driver);
+        webSkip.PasswordBox();
+        webSkip.Next();
         Utils.waitForElementsToLoad(1);
-        form.Holder();
-        form.CardNumber();
-        form.CVC();
+        ContactInfo webInfo = new ContactInfo(driver);
+        webInfo.PostBox();
+        webInfo.PhoneBox();
+        webInfo.CountryBox();
         Utils.waitForElementsToLoad(1);
-        form.MonthButton();
-        form.YearButton();
+        webInfo.Next();
+    }
+    @Test(testName = "Verify Newsletter")
+    public void VerifyNews(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.SubmitBox();
+        webForm.SubmitButton();
+        webForm.AcceptPopUp();
+    }
+    @Test(testName = "Verify Submit Button From Newsletter")
+    public void VerifySubmittButton(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.NonSubmitBox();
+        webForm.SubmitButton();
+    }
+    @Test(testName = "Verify Empty Newsletter Box")
+    public void VerifyEmptyNewsletterBox(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.SubmitButton();
+    }
+
+    @Test(testName = "Verify Navbar Buttons")
+    public void VerifyNavbar(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.WhatYouWillLearnButton();
         Utils.waitForElementsToLoad(1);
-        form.NextPay();
+        webForm.QuestionsButton();
         Utils.waitForElementsToLoad(2);
+        webForm.InstructorsButton();
 
     }
-    @Test (testName = "Full Test")
-    public void FullTest(){
+    @Test(testName = "Verify GoUp Button")
+    public void VerifyGoUpButton(){
         driver.get(Utils.BASE_URL);
-        Homepage m = new Homepage(driver);
-        Enrollment fForm = new Enrollment(driver);
-        InfoEnrollment rm = new InfoEnrollment(driver);
-        Option orm = new Option(driver);
-        Payment Form = new Payment(driver);
-        ReturnToHome webForm = new ReturnToHome(driver);
-        Utils.waitForElementsToLoad(2);
-        m.StartEnrollment();
-        Utils.waitForElementsToLoad(2);
-        fForm.Next();
-        Utils.waitForElementsToLoad(2);
-        rm.NextInfo();
-        Utils.waitForElementsToLoad(2);
-        orm.NextOption();
-        Utils.waitForElementsToLoad(2);
-        Form.NextPay();
-        Utils.waitForElementsToLoad(2);
-        webForm.Return();
-        Utils.waitForElementsToLoad(2);
-
+        Homepage webForm = new Homepage(driver);
+        webForm.ScrollDown();
     }
+    @Test(testName = "Verify Learn The Fundamentals Button")
+    public void VerifyFundamentalsButton(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.FundamentalsButton();
+        Utils.waitForElementsToLoad(2);
+        Fundamentals webFund = new Fundamentals(driver);
+        webFund.ReturnFundamentalButton();
+    }
+    @Test(testName = "Verify Selenium Button")
+    public void VerifySeleniumButton(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.SeleniumButton();
+        Utils.waitForElementsToLoad(1);
+        LearnSelenium webSelen = new LearnSelenium(driver);
+        webSelen.ReturnSeleniumButton();
+    }
+    @Test(testName = "Verify the Questions Bar ")
+    public void VerifyQuestionsBar(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.InstitutionLocatedQuestion();
+        Utils.waitForElementsToLoad(1);
+        webForm.PriceQuestion();
+        Utils.waitForElementsToLoad(1);
+        webForm.KnowleadgeQuestion();
+        Utils.waitForElementsToLoad(1);
+        webForm.SingUpQuestion();
+        Utils.waitForElementsToLoad(1);
+        webForm.JobQuestion();
+    }
+
 
 
     @AfterSuite
     public static void cleanUp() {
+        Utils.waitForElementsToLoad(1);
         driver.manage().deleteAllCookies();
         driver.close();
     }
