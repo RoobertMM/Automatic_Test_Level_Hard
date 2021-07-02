@@ -194,6 +194,30 @@ public class TestPlan {
         webForm.JobQuestion();
     }
 
+    @Test(testName = "Verify the Course Option Selection")
+    public void VerifyCourseOption(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
+        Utils.waitForElementsToLoad(2);
+        SkipEnrollment webSkip = new SkipEnrollment(driver);
+        webSkip.CompleteAllTheInputs();
+        webSkip.NextButton();
+        ContactInfo webInfo = new ContactInfo(driver);
+        webInfo.CityInput();
+        webInfo.EmailInput();
+        webInfo.CountryInput();
+        webInfo.PhoneInput();
+        webInfo.PostInput();
+        Utils.waitForElementsToLoad(1);
+        webInfo.NextButton();
+        CourseOption webOption = new CourseOption(driver);
+        webOption.CompleteAllSelection();
+        Utils.waitForElementsToLoad(1);
+        webOption.NextButton();
+        Utils.waitForElementsToLoad(1);
+    }
+
     @AfterSuite
     public static void cleanUp() {
         Utils.waitForElementsToLoad(1);
