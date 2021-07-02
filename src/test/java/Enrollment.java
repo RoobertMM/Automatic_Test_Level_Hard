@@ -14,19 +14,32 @@ public class Enrollment extends PageObject{
     @FindBy(xpath = "/html/body/div/div/section/div/form/div[1]/button")
     private WebElement nextButton ;
     @FindBy(xpath = "//*[@id=\"firstName\"]")
-    private WebElement firstBox;
+    private WebElement firstNameInput;
     @FindBy(xpath = "//*[@id=\"lastName\"]")
-    private WebElement lastBox;
+    private WebElement lastNameInput;
     @FindBy(xpath = "//*[@id=\"username\"]")
-    private WebElement userBox;
+    private WebElement userNameInput;
     @FindBy(xpath = "//*[@id=\"password\"]")
-    private WebElement passwordBox;
+    private WebElement passwordInput;
     @FindBy(xpath = "//*[@id=\"cpassword\"]")
-    private WebElement rePassowrdBox;
+    private WebElement confirmPasswordInput;
 
+    public void PasswordInput(){
+        this.passwordInput.sendKeys(Password);
+        this.confirmPasswordInput.sendKeys(Password);
+    }
 
-    public void PasswordBox(){this.passwordBox.sendKeys(Password);this.rePassowrdBox.sendKeys(Password);}
-    public void EmailBox(){this.userBox.sendKeys(Email);}
-    public void Next (){this.nextButton.click();}
-    public void UserBox(){this.lastBox.sendKeys(User_Name);this.firstBox.sendKeys(User_Name);}
+    public void EmailInput(){
+        this.userNameInput.sendKeys(Email);
+    }
+
+    public void NextButton(){
+        this.nextButton.click();
+    }
+
+    public void UserInput(){
+        this.lastNameInput.sendKeys(User_Name);
+        this.firstNameInput.sendKeys(User_Name);
+    }
+
 }

@@ -7,8 +7,12 @@ public class Virtual extends PageObject{
     public Virtual(WebDriver driver) {
         super(driver);
     }
+
     @FindBy(xpath = "/html/body/a")
     private WebElement returnVirtual;
 
-    public void ReturnVirtual(){this.returnVirtual.click();}
+    public void ReturnVirtual(){
+        this.returnVirtual.click();
+    }
+
 }

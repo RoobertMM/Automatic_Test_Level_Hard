@@ -11,4 +11,5 @@ public class PageObject {
         driver.manage().window().maximize();
         PageFactory.initElements(driver, this);
     }
+
 }

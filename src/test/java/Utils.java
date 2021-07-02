@@ -13,8 +13,10 @@ public class Utils {
         catch(InterruptedException e){
             e.printStackTrace();
         }
+
     }
     public static void scrollToElement(WebDriver driver, WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
+
 }

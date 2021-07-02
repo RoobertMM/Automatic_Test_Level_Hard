@@ -10,8 +10,9 @@ public class InPerson extends PageObject{
     @FindBy(xpath = "/html/body/a")
     private WebElement returnInPerson;
 
-    public void ReturnInPerson(){Utils.waitForElementsToLoad(2);this.returnInPerson.click();}
-
-
+    public void ReturnInPerson(){
+        Utils.waitForElementsToLoad(2);
+        this.returnInPerson.click();
+    }
 
 }

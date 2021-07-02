@@ -6,21 +6,32 @@ public class SkipEnrollment extends PageObject{
     public SkipEnrollment(WebDriver driver) {
         super(driver);
     }
-    private final String TD= "TD";
+
+    private final String TD= "Teddy Bear";
+
     @FindBy(xpath = "/html/body/div/div/section/div/form/div[1]/button")
     private WebElement nextButton ;
     @FindBy(xpath = "//*[@id=\"firstName\"]")
-    private WebElement firstBox;
+    private WebElement firstNameInput;
     @FindBy(xpath = "//*[@id=\"lastName\"]")
-    private WebElement lastBox;
+    private WebElement lastNameInput;
     @FindBy(xpath = "//*[@id=\"username\"]")
-    private WebElement userBox;
+    private WebElement userInput;
     @FindBy(xpath = "//*[@id=\"password\"]")
-    private WebElement passwordBox;
+    private WebElement passwordInput;
     @FindBy(xpath = "//*[@id=\"cpassword\"]")
-    private WebElement rePassowrdBox;
+    private WebElement confirmPasswordInput;
 
-    public void PasswordBox(){this.passwordBox.sendKeys(TD);this.rePassowrdBox.sendKeys(TD);this.userBox.sendKeys(TD);
-    this.lastBox.sendKeys(TD);this.firstBox.sendKeys(TD);}
-    public void Next (){this.nextButton.click();}
+    public void CompleteAllTheInputs(){
+        this.passwordInput.sendKeys(TD);
+        this.confirmPasswordInput.sendKeys(TD);
+        this.userInput.sendKeys(TD);
+        this.lastNameInput.sendKeys(TD);
+        this.firstNameInput.sendKeys(TD);
+    }
+
+    public void NextButton(){
+        this.nextButton.click();
+    }
+
 }

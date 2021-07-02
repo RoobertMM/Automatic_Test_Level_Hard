@@ -1,4 +1,3 @@
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.AfterSuite;
@@ -21,7 +20,6 @@ public class TestPlan {
         Utils.waitForElementsToLoad(2);
         Virtual webVirtual = new Virtual(driver);
         webVirtual.ReturnVirtual();
-
     }
 
     @Test(testName = "Verify ReadMore Hybrid Button")
@@ -34,7 +32,7 @@ public class TestPlan {
         webHybrid.ReturnHybrid();
     }
 
-    @Test(testName = "Verify InPerson readmore Button")
+    @Test(testName = "Verify ReadMore InPerson Button")
     public void VerifyInPersonButton(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
@@ -42,6 +40,7 @@ public class TestPlan {
         InPerson webPerson = new InPerson(driver);
         webPerson.ReturnInPerson();
     }
+
     @Test(testName = "Verify The Enrollment")
     public void VerifySite() {
         driver.get(Utils.BASE_URL);
@@ -49,12 +48,13 @@ public class TestPlan {
         webForm.StartEnrollment();
         Utils.waitForElementsToLoad(3);
         Enrollment webEnroll = new Enrollment(driver);
-        webEnroll.UserBox();
-        webEnroll.EmailBox();
-        webEnroll.PasswordBox();
+        webEnroll.UserInput();
+        webEnroll.EmailInput();
+        webEnroll.PasswordInput();
         Utils.waitForElementsToLoad(3);
-        webEnroll.Next();
+        webEnroll.NextButton();
     }
+
     @Test(testName = "Verify Contact Information")
     public void VerifyContactInfo(){
         driver.get(Utils.BASE_URL);
@@ -62,73 +62,78 @@ public class TestPlan {
         SkipEnrollment webEnroll = new SkipEnrollment(driver);
         webForm.StartEnrollment();
         Utils.waitForElementsToLoad(2);
-        webEnroll.PasswordBox();
+        webEnroll.CompleteAllTheInputs();
         Utils.waitForElementsToLoad(1);
-        webEnroll.Next();
+        webEnroll.NextButton();
         ContactInfo webContact = new ContactInfo(driver);
-        webContact.CityBox();
-        webContact.CountryBox();
-        webContact.PhoneBox();
-        webContact.PostBox();
-        webContact.EmailBox();
+        webContact.CityInput();
+        webContact.CountryInput();
+        webContact.PhoneInput();
+        webContact.PostInput();
+        webContact.EmailInput();
         Utils.waitForElementsToLoad(2);
-        webContact.Next();
+        webContact.NextButton();
     }
-    @Test(testName = "Verify Enrollment Doesn't Empty")
+
+    @Test(testName = "Verify The Empty Inputs In The Enrollment")
     public void VerifyEmptyEnrollment(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
         webForm.StartEnrollment();
         Enrollment webEnroll = new Enrollment(driver);
-        webEnroll.UserBox();
+        webEnroll.UserInput();
         Utils.waitForElementsToLoad(1);
-        webEnroll.Next();
+        webEnroll.NextButton();
     }
 
-    @Test(testName = "Verify Empty Enrollment #2")
+    @Test(testName = "Verify The Empty Inputs In The Enrollment #2")
     public void VerifyEmptyEnrollmentPassword(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
         webForm.StartEnrollment();
         Utils.waitForElementsToLoad(1);
         Enrollment webEnroll = new Enrollment(driver);
-        webEnroll.UserBox();
-        webEnroll.EmailBox();
+        webEnroll.UserInput();
+        webEnroll.EmailInput();
         Utils.waitForElementsToLoad(1);
-        webEnroll.Next();
+        webEnroll.NextButton();
     }
-    @Test(testName = "Verify Contact Without A Box")
+
+    @Test(testName = "Verify Contact With An Empty Input")
     public void VerifyContactWorking(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
         webForm.StartEnrollment();
         Utils.waitForElementsToLoad(1);
         SkipEnrollment webSkip = new SkipEnrollment(driver);
-        webSkip.PasswordBox();
-        webSkip.Next();
+        webSkip.CompleteAllTheInputs();
+        webSkip.NextButton();
         Utils.waitForElementsToLoad(1);
         ContactInfo webInfo = new ContactInfo(driver);
-        webInfo.PostBox();
-        webInfo.PhoneBox();
-        webInfo.CountryBox();
+        webInfo.PostInput();
+        webInfo.PhoneInput();
+        webInfo.CountryInput();
         Utils.waitForElementsToLoad(1);
-        webInfo.Next();
+        webInfo.NextButton();
     }
+
     @Test(testName = "Verify Newsletter")
     public void VerifyNews(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
-        webForm.SubmitBox();
+        webForm.SubmitInput();
         webForm.SubmitButton();
         webForm.AcceptPopUp();
     }
+
     @Test(testName = "Verify Submit Button From Newsletter")
-    public void VerifySubmittButton(){
+    public void VerifySubmitButton(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
-        webForm.NonSubmitBox();
+        webForm.NonSubmitInput();
         webForm.SubmitButton();
     }
+
     @Test(testName = "Verify Empty Newsletter Box")
     public void VerifyEmptyNewsletterBox(){
         driver.get(Utils.BASE_URL);
@@ -145,14 +150,15 @@ public class TestPlan {
         webForm.QuestionsButton();
         Utils.waitForElementsToLoad(2);
         webForm.InstructorsButton();
-
     }
+
     @Test(testName = "Verify GoUp Button")
     public void VerifyGoUpButton(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
         webForm.ScrollDown();
     }
+
     @Test(testName = "Verify Learn The Fundamentals Button")
     public void VerifyFundamentalsButton(){
         driver.get(Utils.BASE_URL);
@@ -162,6 +168,7 @@ public class TestPlan {
         Fundamentals webFund = new Fundamentals(driver);
         webFund.ReturnFundamentalButton();
     }
+
     @Test(testName = "Verify Selenium Button")
     public void VerifySeleniumButton(){
         driver.get(Utils.BASE_URL);
@@ -171,6 +178,7 @@ public class TestPlan {
         LearnSelenium webSelen = new LearnSelenium(driver);
         webSelen.ReturnSeleniumButton();
     }
+
     @Test(testName = "Verify the Questions Bar ")
     public void VerifyQuestionsBar(){
         driver.get(Utils.BASE_URL);
@@ -186,12 +194,11 @@ public class TestPlan {
         webForm.JobQuestion();
     }
 
-
-
     @AfterSuite
     public static void cleanUp() {
         Utils.waitForElementsToLoad(1);
         driver.manage().deleteAllCookies();
         driver.close();
     }
+
 }
