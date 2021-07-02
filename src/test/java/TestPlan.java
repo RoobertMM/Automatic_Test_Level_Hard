@@ -218,6 +218,85 @@ public class TestPlan {
         Utils.waitForElementsToLoad(1);
     }
 
+    @Test(testName = "Verify the Course Option Without Selecting")
+    public void VerifyEmptyCourseOption() {
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
+        Utils.waitForElementsToLoad(2);
+        SkipEnrollment webSkip = new SkipEnrollment(driver);
+        webSkip.CompleteAllTheInputs();
+        webSkip.NextButton();
+        ContactInfo webInfo = new ContactInfo(driver);
+        webInfo.CityInput();
+        webInfo.EmailInput();
+        webInfo.CountryInput();
+        webInfo.PhoneInput();
+        webInfo.PostInput();
+        Utils.waitForElementsToLoad(1);
+        webInfo.NextButton();
+        CourseOption webOption = new CourseOption(driver);
+        Utils.waitForElementsToLoad(1);
+        webOption.NextButton();
+    }
+
+    @Test(testName = "Verify the Payment Information")
+    public void VerifyPaymentInformation() {
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
+        Utils.waitForElementsToLoad(2);
+        SkipEnrollment webSkip = new SkipEnrollment(driver);
+        webSkip.CompleteAllTheInputs();
+        webSkip.NextButton();
+        ContactInfo webInfo = new ContactInfo(driver);
+        webInfo.CityInput();
+        webInfo.EmailInput();
+        webInfo.CountryInput();
+        webInfo.PhoneInput();
+        webInfo.PostInput();
+        Utils.waitForElementsToLoad(1);
+        webInfo.NextButton();
+        CourseOption webOption = new CourseOption(driver);
+        Utils.waitForElementsToLoad(1);
+        webOption.NextButton();
+        PaymentInformation webPay = new PaymentInformation(driver);
+        webPay.CompletePaymentInputs();
+        Utils.waitForElementsToLoad(1);
+        webPay.NextButton();
+        Utils.waitForElementsToLoad(1);
+    }
+
+    @Test(testName = "Verify the Go Back Home Button")
+    public void VerifyGoBackHome() {
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
+        Utils.waitForElementsToLoad(2);
+        SkipEnrollment webSkip = new SkipEnrollment(driver);
+        webSkip.CompleteAllTheInputs();
+        webSkip.NextButton();
+        ContactInfo webInfo = new ContactInfo(driver);
+        webInfo.CityInput();
+        webInfo.EmailInput();
+        webInfo.CountryInput();
+        webInfo.PhoneInput();
+        webInfo.PostInput();
+        Utils.waitForElementsToLoad(1);
+        webInfo.NextButton();
+        CourseOption webOption = new CourseOption(driver);
+        Utils.waitForElementsToLoad(1);
+        webOption.NextButton();
+        PaymentInformation webPay = new PaymentInformation(driver);
+        webPay.CompletePaymentInputs();
+        Utils.waitForElementsToLoad(1);
+        webPay.NextButton();
+        Utils.waitForElementsToLoad(1);
+        GoBack webBack = new GoBack(driver);
+        webBack.GoBackButton();
+        Utils.waitForElementsToLoad(2);
+    }
+
     @AfterSuite
     public static void cleanUp() {
         Utils.waitForElementsToLoad(1);
