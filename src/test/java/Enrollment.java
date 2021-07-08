@@ -23,6 +23,10 @@ public class Enrollment extends PageObject{
     private WebElement passwordInput;
     @FindBy(xpath = "//*[@id=\"cpassword\"]")
     private WebElement confirmPasswordInput;
+    @FindBy(xpath = "/html/body/div/div/section/div/form/div[1]/h3")
+    private WebElement enrollmentHeader;
+
+    public String getEnrollmentHeader(){return this.enrollmentHeader.getText();}
 
     public void PasswordInput(){
         this.passwordInput.sendKeys(Password);

@@ -12,6 +12,8 @@ public class Homepage extends PageObject {
 
     @FindBy(xpath = "/html/body/section[3]/div/div/div[1]/div/div/a")
     private WebElement virtualReadMore;
+    @FindBy(xpath = "/html/body/section[3]/div/div/div[1]/div/div/h3")
+    private WebElement boxesVirtual;
     @FindBy(xpath = "/html/body/section[3]/div/div/div[2]/div/div/a")
     private WebElement hybridReadMore;
     @FindBy(xpath = "/html/body/section[1]/div/div/div/a")
@@ -44,6 +46,26 @@ public class Homepage extends PageObject {
     private WebElement singupQuestion;
     @FindBy(xpath = "//*[@id=\"questions\"]/div[5]/h3/button")
     private WebElement jobQuestion;
+    @FindBy(xpath = "/html/body/section[3]/div/div/div[2]/div/div/h3")
+    private WebElement hybridHeader;
+    @FindBy(xpath = "/html/body/section[3]/div/div/div[3]/div/div/h3")
+    private WebElement inPersonHeader;
+    @FindBy(xpath = "//*[@id=\"instructors\"]/div/h2")
+    private WebElement instructorsHeader;
+    @FindBy(xpath = "/html/body/footer/div/p")
+    private WebElement buttonHeader;
+    @FindBy(xpath = "//*[@id=\"questions\"]/div[5]/h3/button")
+    private WebElement finalQuestionRespons;
+    @FindBy(xpath = "/html/body/nav/div/a")
+    private WebElement navbarHeader;
+
+    public String getNavbarHeader(){return this.navbarHeader.getText();}
+    public String getFinalQuestionRespons(){return this.finalQuestionRespons.getText();}
+    public String getButtonHeader(){return this.buttonHeader.getText();}
+    public String getInstructorsHeader(){return this.instructorsHeader.getText();}
+    public String getInPersonHeader(){return this.inPersonHeader.getText();}
+    public String GetHybridHeader(){ return this.hybridHeader.getText();}
+    public String getBoxesVirtual(){ return this.boxesVirtual.getText();}
 
     public void JobQuestion(){
         this.jobQuestion.click();
@@ -91,8 +113,7 @@ public class Homepage extends PageObject {
 
     public void InstructorsButton(){
         this.instructors.click();
-        Utils.waitForElementsToLoad(2);
-        Utils.scrollToElement(driver, this.startEnrollmentButton);
+        Utils.waitForElementsToLoad(1);
     }
 
     public void QuestionsButton(){
@@ -134,9 +155,11 @@ public class Homepage extends PageObject {
         this.startEnrollmentButton.click();
     }
 
-    public void ScrollDown(){
+    public void ScrollDown() {
         Utils.scrollToElement(driver, this.scrollUpButton);
-        Utils.waitForElementsToLoad(5);
+        Utils.waitForElementsToLoad(3);
+    }
+    public void ScrollUp(){
         this.scrollUpButton.click();
     }
 

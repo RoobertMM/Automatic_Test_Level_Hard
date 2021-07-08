@@ -17,7 +17,10 @@ public class CourseOption extends PageObject{
     private WebElement securityTester;
     @FindBy(xpath = "/html/body/div/div/section/div/form/div[3]/button[2]")
     private WebElement nextButton;
+    @FindBy(xpath = "/html/body/div/div/section/div/form/div[3]/h3")
+    private WebElement courseOptionHeader;
 
+    public String getCourseOptionHeader(){return this.courseOptionHeader.getText();}
     public void CompleteAllSelection(){
         this.manualTester.click();
         this.automationTester.click();

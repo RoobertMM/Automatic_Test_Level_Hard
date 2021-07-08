@@ -1,5 +1,6 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -19,7 +20,10 @@ public class TestPlan {
         webForm.Virtual();
         Utils.waitForElementsToLoad(2);
         Virtual webVirtual = new Virtual(driver);
+        Assert.assertEquals(webVirtual.getVirtualHeader(),"Virtual");
         webVirtual.ReturnVirtual();
+        Utils.waitForElementsToLoad(1);
+        Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
     @Test(testName = "Verify ReadMore Hybrid Button")
@@ -29,7 +33,9 @@ public class TestPlan {
         webForm.Hybrid();
         Utils.waitForElementsToLoad(2);
         Hybrid webHybrid = new Hybrid(driver);
+        Assert.assertEquals(webHybrid.getHybridHeader(),"Hybrid");
         webHybrid.ReturnHybrid();
+        Assert.assertEquals(webForm.GetHybridHeader(),"Hybrid");
     }
 
     @Test(testName = "Verify ReadMore InPerson Button")
@@ -38,7 +44,9 @@ public class TestPlan {
         Homepage webForm = new Homepage(driver);
         webForm.ReadMoreInPerson();
         InPerson webPerson = new InPerson(driver);
+        Assert.assertEquals(webPerson.getInPersonHeader(),"In Person");
         webPerson.ReturnInPerson();
+        Assert.assertEquals(webForm.getInPersonHeader(),"In Person");
     }
 
     @Test(testName = "Verify The Enrollment")
@@ -53,6 +61,8 @@ public class TestPlan {
         webEnroll.PasswordInput();
         Utils.waitForElementsToLoad(3);
         webEnroll.NextButton();
+        ContactInfo webContact = new ContactInfo(driver);
+        Assert.assertEquals(webContact.getContactInfoHeader(),"Contact information");
     }
 
     @Test(testName = "Verify Contact Information")
@@ -73,6 +83,8 @@ public class TestPlan {
         webContact.EmailInput();
         Utils.waitForElementsToLoad(2);
         webContact.NextButton();
+        CourseOption webOption = new CourseOption(driver);
+        Assert.assertEquals(webOption.getCourseOptionHeader(),"Course options");
     }
 
     @Test(testName = "Verify The Empty Inputs In The Enrollment")
@@ -84,19 +96,7 @@ public class TestPlan {
         webEnroll.UserInput();
         Utils.waitForElementsToLoad(1);
         webEnroll.NextButton();
-    }
-
-    @Test(testName = "Verify The Empty Inputs In The Enrollment #2")
-    public void VerifyEmptyEnrollmentPassword(){
-        driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(1);
-        Enrollment webEnroll = new Enrollment(driver);
-        webEnroll.UserInput();
-        webEnroll.EmailInput();
-        Utils.waitForElementsToLoad(1);
-        webEnroll.NextButton();
+        Assert.assertEquals(webEnroll.getEnrollmentHeader(),"Personal information");
     }
 
     @Test(testName = "Verify Contact With An Empty Input")
@@ -115,6 +115,7 @@ public class TestPlan {
         webInfo.CountryInput();
         Utils.waitForElementsToLoad(1);
         webInfo.NextButton();
+        Assert.assertEquals(webInfo.getContactInfoHeader(),"Contact information");
     }
 
     @Test(testName = "Verify Newsletter")
@@ -124,6 +125,7 @@ public class TestPlan {
         webForm.SubmitInput();
         webForm.SubmitButton();
         webForm.AcceptPopUp();
+        Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
     @Test(testName = "Verify Submit Button From Newsletter")
@@ -134,8 +136,8 @@ public class TestPlan {
         webForm.SubmitButton();
     }
 
-    @Test(testName = "Verify Empty Newsletter Box")
-    public void VerifyEmptyNewsletterBox(){
+    @Test(testName = "Verify Empty Newsletter Input")
+    public void VerifyEmptyNewsletterInput(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
         webForm.SubmitButton();
@@ -146,10 +148,11 @@ public class TestPlan {
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
         webForm.WhatYouWillLearnButton();
-        Utils.waitForElementsToLoad(1);
+        Utils.waitForElementsToLoad(3);
         webForm.QuestionsButton();
-        Utils.waitForElementsToLoad(2);
+        Utils.waitForElementsToLoad(3);
         webForm.InstructorsButton();
+        Assert.assertEquals(webForm.getInstructorsHeader(),"Our Instructors");
     }
 
     @Test(testName = "Verify GoUp Button")
@@ -157,6 +160,9 @@ public class TestPlan {
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
         webForm.ScrollDown();
+        Assert.assertEquals(webForm.getButtonHeader(),"Copyright © 2021 Software Course");
+        webForm.ScrollUp();
+        Assert.assertEquals(webForm.GetHybridHeader(),"Hybrid");
     }
 
     @Test(testName = "Verify Learn The Fundamentals Button")
@@ -167,6 +173,7 @@ public class TestPlan {
         Utils.waitForElementsToLoad(2);
         Fundamentals webFund = new Fundamentals(driver);
         webFund.ReturnFundamentalButton();
+        Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
     @Test(testName = "Verify Selenium Button")
@@ -177,6 +184,7 @@ public class TestPlan {
         Utils.waitForElementsToLoad(1);
         LearnSelenium webSelen = new LearnSelenium(driver);
         webSelen.ReturnSeleniumButton();
+        Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
     @Test(testName = "Verify the Questions Bar ")
@@ -192,6 +200,8 @@ public class TestPlan {
         webForm.SingUpQuestion();
         Utils.waitForElementsToLoad(1);
         webForm.JobQuestion();
+        Utils.waitForElementsToLoad(3);
+        Assert.assertEquals(webForm.getFinalQuestionRespons(),"Will your organization help me find a job?");
     }
 
     @Test(testName = "Verify the Course Option Selection")
@@ -216,6 +226,8 @@ public class TestPlan {
         Utils.waitForElementsToLoad(1);
         webOption.NextButton();
         Utils.waitForElementsToLoad(1);
+        PaymentInformation webPay = new PaymentInformation(driver);
+        Assert.assertEquals(webPay.getPaymentInfoHeader(),"Payment information");
     }
 
     @Test(testName = "Verify the Course Option Without Selecting")
@@ -238,6 +250,8 @@ public class TestPlan {
         CourseOption webOption = new CourseOption(driver);
         Utils.waitForElementsToLoad(1);
         webOption.NextButton();
+        PaymentInformation webPay = new PaymentInformation(driver);
+        Assert.assertEquals(webPay.getPaymentInfoHeader(),"Payment information");
     }
 
     @Test(testName = "Verify the Payment Information")
@@ -265,6 +279,8 @@ public class TestPlan {
         Utils.waitForElementsToLoad(1);
         webPay.NextButton();
         Utils.waitForElementsToLoad(1);
+        GoBack webBack = new GoBack(driver);
+        Assert.assertEquals(webBack.GoBackHeader(),"Success!");
     }
 
     @Test(testName = "Verify the Go Back Home Button")
@@ -295,6 +311,7 @@ public class TestPlan {
         GoBack webBack = new GoBack(driver);
         webBack.GoBackButton();
         Utils.waitForElementsToLoad(2);
+        Assert.assertEquals(webForm.getNavbarHeader(),"Software testing course");
     }
 
     @AfterSuite

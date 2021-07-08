@@ -14,6 +14,8 @@ public class ContactInfo extends PageObject{
     private final String City = "Russia";
     private final String PostCode = "!@@!!!21234";
 
+    @FindBy(xpath = "/html/body/div/div/section/div/form/div[2]/h3")
+    private WebElement contactInfoHeader;
     @FindBy(xpath = "//*[@id=\"email\"]")
     private WebElement email;
     @FindBy(xpath = "//*[@id=\"phone\"]")
@@ -26,6 +28,8 @@ public class ContactInfo extends PageObject{
     private WebElement postcode;
     @FindBy(xpath = "/html/body/div/div/section/div/form/div[2]/button[2]")
     private WebElement next;
+
+    public String getContactInfoHeader(){return this.contactInfoHeader.getText();}
 
     public void NextButton(){this.next.click();}
 
