@@ -56,11 +56,8 @@ public class TestPlan {
         webForm.StartEnrollment();
         Utils.waitForElementsToLoad(3);
         Enrollment webEnroll = new Enrollment(driver);
-        webEnroll.UserInput();
-        webEnroll.EmailInput();
-        webEnroll.PasswordInput();
-        Utils.waitForElementsToLoad(3);
-        webEnroll.NextButton();
+        PageNavigation page = new PageNavigation(driver);
+        page.navigateToStepOne();
         ContactInfo webContact = new ContactInfo(driver);
         Assert.assertEquals(webContact.getContactInfoHeader(),"Contact information");
     }
@@ -311,6 +308,16 @@ public class TestPlan {
         GoBack webBack = new GoBack(driver);
         webBack.GoBackButton();
         Utils.waitForElementsToLoad(2);
+        Assert.assertEquals(webForm.getNavbarHeader(),"Software testing course");
+    }
+
+    @Test(testName = "Verify All Enrollment")
+    public void VerifyEnrollment(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
+        SkipAllTheEnrollment webSkip = new SkipAllTheEnrollment(driver);
+        webSkip.SkipAll();
         Assert.assertEquals(webForm.getNavbarHeader(),"Software testing course");
     }
 
