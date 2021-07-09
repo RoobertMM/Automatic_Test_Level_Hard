@@ -16,48 +16,35 @@ public class TestPlan {
     @Test(testName = "Verify ReadMore Virtual Button")
     public void VerifyVirtualButton() {
         driver.get(Utils.BASE_URL);
+        BoxesNavigation box = new BoxesNavigation(driver);
+        box.ReadMoreButton(BoxesNavigation.Steps.VirtualBox);
         Homepage webForm = new Homepage(driver);
-        webForm.Virtual();
-        Utils.waitForElementsToLoad(2);
-        Virtual webVirtual = new Virtual(driver);
-        Assert.assertEquals(webVirtual.getVirtualHeader(),"Virtual");
-        webVirtual.ReturnVirtual();
-        Utils.waitForElementsToLoad(1);
         Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
     @Test(testName = "Verify ReadMore Hybrid Button")
     public void VerifyHybridButton(){
         driver.get(Utils.BASE_URL);
+        BoxesNavigation box = new BoxesNavigation(driver);
+        box.ReadMoreButton(BoxesNavigation.Steps.HybridBox);
         Homepage webForm = new Homepage(driver);
-        webForm.Hybrid();
-        Utils.waitForElementsToLoad(2);
-        Hybrid webHybrid = new Hybrid(driver);
-        Assert.assertEquals(webHybrid.getHybridHeader(),"Hybrid");
-        webHybrid.ReturnHybrid();
         Assert.assertEquals(webForm.GetHybridHeader(),"Hybrid");
     }
 
     @Test(testName = "Verify ReadMore InPerson Button")
     public void VerifyInPersonButton(){
         driver.get(Utils.BASE_URL);
+        BoxesNavigation box = new BoxesNavigation(driver);
+        box.ReadMoreButton(BoxesNavigation.Steps.InPersonBox);
         Homepage webForm = new Homepage(driver);
-        webForm.ReadMoreInPerson();
-        InPerson webPerson = new InPerson(driver);
-        Assert.assertEquals(webPerson.getInPersonHeader(),"In Person");
-        webPerson.ReturnInPerson();
         Assert.assertEquals(webForm.getInPersonHeader(),"In Person");
     }
 
     @Test(testName = "Verify The Enrollment")
     public void VerifySite() {
         driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(3);
-        Enrollment webEnroll = new Enrollment(driver);
         PageNavigation page = new PageNavigation(driver);
-        page.navigateToStepOne();
+        page.navigateToPage(PageNavigation.Steps.StepOne);
         ContactInfo webContact = new ContactInfo(driver);
         Assert.assertEquals(webContact.getContactInfoHeader(),"Contact information");
     }
@@ -65,21 +52,8 @@ public class TestPlan {
     @Test(testName = "Verify Contact Information")
     public void VerifyContactInfo(){
         driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        SkipEnrollment webEnroll = new SkipEnrollment(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(2);
-        webEnroll.CompleteAllTheInputs();
-        Utils.waitForElementsToLoad(1);
-        webEnroll.NextButton();
-        ContactInfo webContact = new ContactInfo(driver);
-        webContact.CityInput();
-        webContact.CountryInput();
-        webContact.PhoneInput();
-        webContact.PostInput();
-        webContact.EmailInput();
-        Utils.waitForElementsToLoad(2);
-        webContact.NextButton();
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepTwo);
         CourseOption webOption = new CourseOption(driver);
         Assert.assertEquals(webOption.getCourseOptionHeader(),"Course options");
     }
@@ -99,13 +73,8 @@ public class TestPlan {
     @Test(testName = "Verify Contact With An Empty Input")
     public void VerifyContactWorking(){
         driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(1);
-        SkipEnrollment webSkip = new SkipEnrollment(driver);
-        webSkip.CompleteAllTheInputs();
-        webSkip.NextButton();
-        Utils.waitForElementsToLoad(1);
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepOne);
         ContactInfo webInfo = new ContactInfo(driver);
         webInfo.PostInput();
         webInfo.PhoneInput();
@@ -204,25 +173,8 @@ public class TestPlan {
     @Test(testName = "Verify the Course Option Selection")
     public void VerifyCourseOption(){
         driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(2);
-        SkipEnrollment webSkip = new SkipEnrollment(driver);
-        webSkip.CompleteAllTheInputs();
-        webSkip.NextButton();
-        ContactInfo webInfo = new ContactInfo(driver);
-        webInfo.CityInput();
-        webInfo.EmailInput();
-        webInfo.CountryInput();
-        webInfo.PhoneInput();
-        webInfo.PostInput();
-        Utils.waitForElementsToLoad(1);
-        webInfo.NextButton();
-        CourseOption webOption = new CourseOption(driver);
-        webOption.CompleteAllSelection();
-        Utils.waitForElementsToLoad(1);
-        webOption.NextButton();
-        Utils.waitForElementsToLoad(1);
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepThree);
         PaymentInformation webPay = new PaymentInformation(driver);
         Assert.assertEquals(webPay.getPaymentInfoHeader(),"Payment information");
     }
@@ -230,23 +182,8 @@ public class TestPlan {
     @Test(testName = "Verify the Course Option Without Selecting")
     public void VerifyEmptyCourseOption() {
         driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(2);
-        SkipEnrollment webSkip = new SkipEnrollment(driver);
-        webSkip.CompleteAllTheInputs();
-        webSkip.NextButton();
-        ContactInfo webInfo = new ContactInfo(driver);
-        webInfo.CityInput();
-        webInfo.EmailInput();
-        webInfo.CountryInput();
-        webInfo.PhoneInput();
-        webInfo.PostInput();
-        Utils.waitForElementsToLoad(1);
-        webInfo.NextButton();
-        CourseOption webOption = new CourseOption(driver);
-        Utils.waitForElementsToLoad(1);
-        webOption.NextButton();
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepThree);
         PaymentInformation webPay = new PaymentInformation(driver);
         Assert.assertEquals(webPay.getPaymentInfoHeader(),"Payment information");
     }
@@ -254,28 +191,8 @@ public class TestPlan {
     @Test(testName = "Verify the Payment Information")
     public void VerifyPaymentInformation() {
         driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(2);
-        SkipEnrollment webSkip = new SkipEnrollment(driver);
-        webSkip.CompleteAllTheInputs();
-        webSkip.NextButton();
-        ContactInfo webInfo = new ContactInfo(driver);
-        webInfo.CityInput();
-        webInfo.EmailInput();
-        webInfo.CountryInput();
-        webInfo.PhoneInput();
-        webInfo.PostInput();
-        Utils.waitForElementsToLoad(1);
-        webInfo.NextButton();
-        CourseOption webOption = new CourseOption(driver);
-        Utils.waitForElementsToLoad(1);
-        webOption.NextButton();
-        PaymentInformation webPay = new PaymentInformation(driver);
-        webPay.CompletePaymentInputs();
-        Utils.waitForElementsToLoad(1);
-        webPay.NextButton();
-        Utils.waitForElementsToLoad(1);
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepFour);
         GoBack webBack = new GoBack(driver);
         Assert.assertEquals(webBack.GoBackHeader(),"Success!");
     }
@@ -283,41 +200,9 @@ public class TestPlan {
     @Test(testName = "Verify the Go Back Home Button")
     public void VerifyGoBackHome() {
         driver.get(Utils.BASE_URL);
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepFive);
         Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Utils.waitForElementsToLoad(2);
-        SkipEnrollment webSkip = new SkipEnrollment(driver);
-        webSkip.CompleteAllTheInputs();
-        webSkip.NextButton();
-        ContactInfo webInfo = new ContactInfo(driver);
-        webInfo.CityInput();
-        webInfo.EmailInput();
-        webInfo.CountryInput();
-        webInfo.PhoneInput();
-        webInfo.PostInput();
-        Utils.waitForElementsToLoad(1);
-        webInfo.NextButton();
-        CourseOption webOption = new CourseOption(driver);
-        Utils.waitForElementsToLoad(1);
-        webOption.NextButton();
-        PaymentInformation webPay = new PaymentInformation(driver);
-        webPay.CompletePaymentInputs();
-        Utils.waitForElementsToLoad(1);
-        webPay.NextButton();
-        Utils.waitForElementsToLoad(1);
-        GoBack webBack = new GoBack(driver);
-        webBack.GoBackButton();
-        Utils.waitForElementsToLoad(2);
-        Assert.assertEquals(webForm.getNavbarHeader(),"Software testing course");
-    }
-
-    @Test(testName = "Verify All Enrollment")
-    public void VerifyEnrollment(){
-        driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        SkipAllTheEnrollment webSkip = new SkipAllTheEnrollment(driver);
-        webSkip.SkipAll();
         Assert.assertEquals(webForm.getNavbarHeader(),"Software testing course");
     }
 

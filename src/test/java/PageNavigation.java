@@ -42,14 +42,16 @@ public class PageNavigation extends PageObject{
         }
     }
 
-    public void navigateToStepOne(){
+    private void navigateToStepOne(){
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
        Enrollment form = new Enrollment(driver);
        form.UserInput();
        form.EmailInput();
        form.PasswordInput();
        form.NextButton();
     }
-    public void navigateToStepTwo(){
+    private void navigateToStepTwo(){
         ContactInfo info = new ContactInfo(driver);
         info.EmailInput();
         info.PhoneInput();
@@ -59,16 +61,16 @@ public class PageNavigation extends PageObject{
         info.NextButton();
 
     }
-    public void navigateToStepThree(){
+    private void navigateToStepThree(){
         CourseOption option = new CourseOption(driver);
         option.NextButton();
     }
-    public void navigateToStepFour(){
+    private void navigateToStepFour(){
         PaymentInformation pay = new PaymentInformation(driver);
         pay.CompletePaymentInputs();
         pay.NextButton();
     }
-    public void navigateToStepFive(){
+    private void navigateToStepFive(){
         GoBack back = new GoBack(driver);
         back.GoBackButton();
     }
