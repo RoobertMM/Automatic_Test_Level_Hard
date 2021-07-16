@@ -66,6 +66,7 @@ public class PageNavigation extends PageObject{
 
     private void navigateToStepThree(){
         CourseOption option = new CourseOption(driver);
+        option.CompleteAllSelection();
         option.NextButton();
     }
 
