@@ -4,6 +4,7 @@ public class PageNavigation extends PageObject{
     public PageNavigation(WebDriver driver) {
         super(driver);
     }
+
     enum Steps {
         StepOne,
         StepTwo,
@@ -40,6 +41,7 @@ public class PageNavigation extends PageObject{
                 navigateToStepFive();
                 break;
         }
+
     }
 
     private void navigateToStepOne(){
@@ -51,6 +53,7 @@ public class PageNavigation extends PageObject{
        form.PasswordInput();
        form.NextButton();
     }
+
     private void navigateToStepTwo(){
         ContactInfo info = new ContactInfo(driver);
         info.EmailInput();
@@ -59,21 +62,22 @@ public class PageNavigation extends PageObject{
         info.CityInput();
         info.PostInput();
         info.NextButton();
-
     }
+
     private void navigateToStepThree(){
         CourseOption option = new CourseOption(driver);
         option.NextButton();
     }
+
     private void navigateToStepFour(){
         PaymentInformation pay = new PaymentInformation(driver);
         pay.CompletePaymentInputs();
         pay.NextButton();
     }
+
     private void navigateToStepFive(){
         GoBack back = new GoBack(driver);
         back.GoBackButton();
     }
-
 
 }

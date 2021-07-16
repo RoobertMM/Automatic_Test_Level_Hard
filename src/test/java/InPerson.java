@@ -13,6 +13,7 @@ public class InPerson extends PageObject{
     private WebElement inPersonHeader;
 
     public String getInPersonHeader(){return this.inPersonHeader.getText();}
+
     public void ReturnInPerson(){
         Utils.waitForElementsToLoad(2);
         this.returnInPerson.click();

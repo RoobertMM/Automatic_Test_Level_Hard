@@ -43,50 +43,6 @@ public class TestPlan {
         Assert.assertEquals(webForm.getInPersonHeader(),"In Person");
     }
 
-    @Test(testName = "Verify The Enrollment")
-    public void VerifySite() {
-        driver.get(Utils.BASE_URL);
-        PageNavigation page = new PageNavigation(driver);
-        page.navigateToPage(PageNavigation.Steps.StepOne);
-        ContactInfo webContact = new ContactInfo(driver);
-        Assert.assertEquals(webContact.getContactInfoHeader(),"Contact information");
-    }
-
-    @Test(testName = "Verify Contact Information")
-    public void VerifyContactInfo(){
-        driver.get(Utils.BASE_URL);
-        PageNavigation nav = new PageNavigation(driver);
-        nav.navigateToPage(PageNavigation.Steps.StepTwo);
-        CourseOption webOption = new CourseOption(driver);
-        Assert.assertEquals(webOption.getCourseOptionHeader(),"Course options");
-    }
-
-    @Test(testName = "Verify The Empty Inputs In The Enrollment")
-    public void VerifyEmptyEnrollment(){
-        driver.get(Utils.BASE_URL);
-        Homepage webForm = new Homepage(driver);
-        webForm.StartEnrollment();
-        Enrollment webEnroll = new Enrollment(driver);
-        webEnroll.UserInput();
-        Utils.waitForElementsToLoad(1);
-        webEnroll.NextButton();
-        Assert.assertEquals(webEnroll.getEnrollmentHeader(),"Personal information");
-    }
-
-    @Test(testName = "Verify Contact With An Empty Input")
-    public void VerifyContactWorking(){
-        driver.get(Utils.BASE_URL);
-        PageNavigation nav = new PageNavigation(driver);
-        nav.navigateToPage(PageNavigation.Steps.StepOne);
-        ContactInfo webInfo = new ContactInfo(driver);
-        webInfo.PostInput();
-        webInfo.PhoneInput();
-        webInfo.CountryInput();
-        Utils.waitForElementsToLoad(1);
-        webInfo.NextButton();
-        Assert.assertEquals(webInfo.getContactInfoHeader(),"Contact information");
-    }
-
     @Test(testName = "Verify Newsletter")
     public void VerifyNews(){
         driver.get(Utils.BASE_URL);
@@ -180,6 +136,50 @@ public class TestPlan {
         nav.navigateToPage(PageNavigation.Steps.StepThree);
         PaymentInformation webPay = new PaymentInformation(driver);
         Assert.assertEquals(webPay.getPaymentInfoHeader(),"Payment information");
+    }
+
+    @Test(testName = "Verify The Enrollment")
+    public void VerifySite() {
+        driver.get(Utils.BASE_URL);
+        PageNavigation page = new PageNavigation(driver);
+        page.navigateToPage(PageNavigation.Steps.StepOne);
+        ContactInfo webContact = new ContactInfo(driver);
+        Assert.assertEquals(webContact.getContactInfoHeader(),"Contact information");
+    }
+
+    @Test(testName = "Verify Contact Information")
+    public void VerifyContactInfo(){
+        driver.get(Utils.BASE_URL);
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepTwo);
+        CourseOption webOption = new CourseOption(driver);
+        Assert.assertEquals(webOption.getCourseOptionHeader(),"Course options");
+    }
+
+    @Test(testName = "Verify The Empty Inputs In The Enrollment")
+    public void VerifyEmptyEnrollment(){
+        driver.get(Utils.BASE_URL);
+        Homepage webForm = new Homepage(driver);
+        webForm.StartEnrollment();
+        Enrollment webEnroll = new Enrollment(driver);
+        webEnroll.UserInput();
+        Utils.waitForElementsToLoad(1);
+        webEnroll.NextButton();
+        Assert.assertEquals(webEnroll.getEnrollmentHeader(),"Personal information");
+    }
+
+    @Test(testName = "Verify Contact With An Empty Input")
+    public void VerifyContactWorking(){
+        driver.get(Utils.BASE_URL);
+        PageNavigation nav = new PageNavigation(driver);
+        nav.navigateToPage(PageNavigation.Steps.StepOne);
+        ContactInfo webInfo = new ContactInfo(driver);
+        webInfo.PostInput();
+        webInfo.PhoneInput();
+        webInfo.CountryInput();
+        Utils.waitForElementsToLoad(1);
+        webInfo.NextButton();
+        Assert.assertEquals(webInfo.getContactInfoHeader(),"Contact information");
     }
 
     @Test(testName = "Verify the Course Option Without Selecting")

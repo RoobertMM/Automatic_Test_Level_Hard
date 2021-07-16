@@ -19,7 +19,6 @@ public class PaymentInformation extends PageObject{
     private WebElement cvcInput;
     @FindBy(xpath = "/html/body/div/div/section/div/form/div[4]/div[4]/button[2]")
     private WebElement nextButton;
-
     @FindBy(xpath = "/html/body/div/div/section/div/form/div[4]/h3")
     private WebElement paymentInfoHeader;
 

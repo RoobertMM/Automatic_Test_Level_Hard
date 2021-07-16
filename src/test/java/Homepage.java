@@ -60,11 +60,17 @@ public class Homepage extends PageObject {
     private WebElement navbarHeader;
 
     public String getNavbarHeader(){return this.navbarHeader.getText();}
+
     public String getFinalQuestionRespons(){return this.finalQuestionRespons.getText();}
+
     public String getButtonHeader(){return this.buttonHeader.getText();}
+
     public String getInstructorsHeader(){return this.instructorsHeader.getText();}
+
     public String getInPersonHeader(){return this.inPersonHeader.getText();}
+
     public String GetHybridHeader(){ return this.hybridHeader.getText();}
+
     public String getBoxesVirtual(){ return this.boxesVirtual.getText();}
 
     public void JobQuestion(){

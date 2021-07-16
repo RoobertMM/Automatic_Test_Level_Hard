@@ -13,6 +13,7 @@ public class Hybrid extends PageObject{
     private WebElement hybridHeader;
 
     public String getHybridHeader(){ return this.hybridHeader.getText();}
+
     public void ReturnHybrid(){
         this.hybridReturn.click();
     }

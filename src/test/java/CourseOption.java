@@ -21,6 +21,7 @@ public class CourseOption extends PageObject{
     private WebElement courseOptionHeader;
 
     public String getCourseOptionHeader(){return this.courseOptionHeader.getText();}
+
     public void CompleteAllSelection(){
         this.manualTester.click();
         this.automationTester.click();
