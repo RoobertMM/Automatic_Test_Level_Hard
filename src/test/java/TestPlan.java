@@ -16,27 +16,30 @@ public class TestPlan {
     @Test(testName = "Verify ReadMore Virtual Button")
     public void VerifyVirtualButton() {
         driver.get(Utils.BASE_URL);
-        BoxesNavigation box = new BoxesNavigation(driver);
-        box.ReadMoreButton(BoxesNavigation.Steps.VirtualBox);
         Homepage webForm = new Homepage(driver);
+        webForm.Virtual();
+        Virtual virtual = new Virtual(driver);
+        virtual.ReturnVirtual();
         Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
     @Test(testName = "Verify ReadMore Hybrid Button")
     public void VerifyHybridButton(){
         driver.get(Utils.BASE_URL);
-        BoxesNavigation box = new BoxesNavigation(driver);
-        box.ReadMoreButton(BoxesNavigation.Steps.HybridBox);
         Homepage webForm = new Homepage(driver);
+        webForm.Hybrid();
+        Hybrid hybrid = new Hybrid(driver);
+        hybrid.ReturnHybrid();
         Assert.assertEquals(webForm.GetHybridHeader(),"Hybrid");
     }
 
     @Test(testName = "Verify ReadMore InPerson Button")
     public void VerifyInPersonButton(){
         driver.get(Utils.BASE_URL);
-        BoxesNavigation box = new BoxesNavigation(driver);
-        box.ReadMoreButton(BoxesNavigation.Steps.InPersonBox);
         Homepage webForm = new Homepage(driver);
+        webForm.ReadMoreInPerson();
+        InPerson person = new InPerson(driver);
+        person.ReturnInPerson();
         Assert.assertEquals(webForm.getInPersonHeader(),"In Person");
     }
 
@@ -94,7 +97,7 @@ public class TestPlan {
         Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
-    @Test(testName = "Verify Submit Button From Newsletter")
+    @Test(testName = "Verify Newsletter Without Putting @ or .com ")
     public void VerifySubmitButton(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
@@ -142,7 +145,7 @@ public class TestPlan {
         Assert.assertEquals(webForm.getBoxesVirtual(),"Virtual");
     }
 
-    @Test(testName = "Verify Selenium Button")
+    @Test(testName = "Verify Learn Selenium Button")
     public void VerifySeleniumButton(){
         driver.get(Utils.BASE_URL);
         Homepage webForm = new Homepage(driver);
