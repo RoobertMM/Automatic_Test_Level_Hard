@@ -58,6 +58,22 @@ public class Homepage extends PageObject {
     private WebElement finalQuestionRespons;
     @FindBy(xpath = "/html/body/nav/div/a")
     private WebElement navbarHeader;
+    @FindBy(xpath = "//*[@id=\"questions\"]/div[1]/h3/button")
+    private WebElement headerQuestion1;
+    @FindBy(xpath = "//*[@id=\"questions\"]/div[2]/h3/button")
+    private WebElement headerQuestion2;
+    @FindBy(xpath = "//*[@id=\"questions\"]/div[3]/h3/button")
+    private WebElement headerQuestion3;
+    @FindBy(xpath = "//*[@id=\"questions\"]/div[4]/h3/button")
+    private WebElement question4Header;
+
+    public String Question4Header(){return this.question4Header.getText();}
+
+    public String Question3Header(){return this.headerQuestion3.getText();}
+
+    public String HeaderQuestion2(){return this.headerQuestion2.getText();}
+
+    public String Question1Header(){return this.headerQuestion1.getText();}
 
     public String getNavbarHeader(){return this.navbarHeader.getText();}
 

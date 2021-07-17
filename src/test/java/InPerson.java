@@ -9,6 +9,10 @@ public class InPerson extends PageObject{
 
     @FindBy(xpath = "/html/body/a")
     private WebElement returnInPerson;
+    @FindBy(xpath = "/html/body/h1")
+    private WebElement headerInPerson;
+
+    public String HeaderInPerson(){return this.headerInPerson.getText();}
 
     public void ReturnInPerson(){
         Utils.waitForElementsToLoad(2);

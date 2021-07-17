@@ -10,6 +10,10 @@ public class Fundamentals extends PageObject{
 
     @FindBy(xpath = "/html/body/a")
     private WebElement returnFundamentalsButton;
+    @FindBy(xpath = "/html/body/h1")
+    private WebElement HeaderFundamentals;
+
+    public String HeaderFundamentals(){return this.HeaderFundamentals.getText();}
 
     public void ReturnFundamentalButton(){
         this.returnFundamentalsButton.click();

@@ -10,6 +10,10 @@ public class Virtual extends PageObject{
 
     @FindBy(xpath = "/html/body/a")
     private WebElement returnVirtual;
+    @FindBy(xpath = "/html/body/h1")
+    private WebElement virtualHeader;
+
+    public String VirtualHeader(){return this.virtualHeader.getText();}
 
     public void ReturnVirtual(){
         this.returnVirtual.click();

@@ -9,6 +9,10 @@ public class LearnSelenium extends PageObject{
 
     @FindBy(xpath = "/html/body/a")
     private WebElement returnSeleniumButton;
+    @FindBy(xpath = "/html/body/h1")
+    private WebElement headerSelenium;
+
+    public String HeaderSelenium(){return this.headerSelenium.getText();}
 
     public void ReturnSeleniumButton(){
         this.returnSeleniumButton.click();
